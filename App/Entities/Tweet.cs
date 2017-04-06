@@ -4,14 +4,9 @@ namespace Tweet
 {
     public class Tweet
     {
-        protected string Message { get; set; }
-        protected Guid TweetOwner { get; set; }
-        protected Guid TweetID { get; }
+        public string Message { get; set; }
+        public int TweetOwner { get; set; }
+        public int TweetID { get; set; }
 
-        public Tweet(Guid id)
-        {
-            this.TweetOwner = id;
-            this.TweetID = Guid.NewGuid();
-        }
     }
 }
