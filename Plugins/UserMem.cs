@@ -2,40 +2,44 @@ using System.Collections.Generic;
 
 namespace CoreUser
 {
-    class UserMem
+    static class UserMem
     {
-        private List<User> users;
- 
-        public UserMem()
+        private static List<User> usersMem = new List<User>
         {
-            this.users = new List<User>();
-            users.Add(new User{ID = 1, FirstName = "All", LastName = "Alfred", Email = "a@a.net"});
-            users.Add(new User{ID = 2, FirstName = "Bob", LastName = "B", Email = "b@b.net"});
-            users.Add(new User{ID = 3, FirstName = "Charlie", LastName = "C", Email = "c@c.net"});
+            new User{ID = 1, FirstName = "All", LastName = "Alfred", Email = "a@a.net"},
+            new User{ID = 2, FirstName = "Bob", LastName = "B", Email = "b@b.net"},
+            new User{ID = 3, FirstName = "Charlie", LastName = "C", Email = "c@c.net"},
+        };
+       
+        public static List<User> All(){
+            return usersMem;
         }
-
-        public UserMem(List<User> u)
+        public static bool Add(User u)
         {
-            this.users = new List<User>(u);
-        }
-        public List<User> All(){
-            return users;
-        }
-        public bool Add(User u)
-        {
-            int count = this.users.FindIndex(x => x.ID == u.ID);
+            int count = usersMem.FindIndex(x => x.ID == u.ID);
             if(count != -1)
             {
                 return false;
             }
-            this.users.Add(u);
+            usersMem.Add(u);
             return true;
         }
 
-        public User UserById(int id)
+        public static bool DeleteById(int id)
         {
-            int index = this.users.FindIndex(x => x.ID == id);
-            return users[index];
+            int index = usersMem.FindIndex(x => x.ID == id);
+            if(index <= -1)
+            {
+                return false;
+            }
+            usersMem.RemoveAt(index);
+            return true;
+        }
+
+        public static User UserById(int id)
+        {
+            int index = usersMem.FindIndex(x => x.ID == id);
+            return usersMem[index];
         }
     }
 }

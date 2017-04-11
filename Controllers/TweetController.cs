@@ -7,24 +7,22 @@ using System;
 namespace Tweet
 {
     [Route("api/[controller]")]
-
     public class TweetController : Controller
     {
-        [HttpGet("{all}")]
+        [HttpGet("")]
         public IEnumerable<Tweet> List()
         {
-            return new List<Tweet>
-            {
-                new Tweet{ TweetID = 1, TweetOwner = 1, Message = "first tweet" }
-            };
+            TweetMem mem = new TweetMem();
+            return mem.All();
         }
-        /* 
+    
         [HttpGetAttribute("{id}")]
-        public IActionResult UserDetails(Guid id)
+        public IActionResult UserDetails(int id)
         {
-            return Ok(new User{FirstName = "Test", LastName = "Test", Email = "test@a.com"});
+            TweetMem mem = new TweetMem();
+            return Ok(mem.TweetById(id));
         }
-        
+        /*
         [HttpPost("")]
         public IActionResult CreateUser(string firstName, string lastName, string email)
         {

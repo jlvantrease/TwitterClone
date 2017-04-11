@@ -168,5 +168,6 @@
 "/home/jason/asp.net/TwitterClone/App/Entities/Tweet.cs"
 "/home/jason/asp.net/TwitterClone/App/Entities/User.cs"
 "/home/jason/asp.net/TwitterClone/App/Entities/CoreNotes.cs"
+"/home/jason/asp.net/TwitterClone/Plugins/TweetMem.cs"
 "/home/jason/asp.net/TwitterClone/Plugins/UserMem.cs"
 "/home/jason/asp.net/TwitterClone/Plugins/CoreNotesMem.cs"
