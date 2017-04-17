@@ -1,8 +1,5 @@
-using Tweet;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System;
 
 namespace Tweet
 {
@@ -20,16 +17,16 @@ namespace Tweet
         public IActionResult UserDetails(int id)
         {
             TweetMem mem = new TweetMem();
-            return Ok(mem.TweetById(id));
+            return Ok();//(mem.TweetById(id));
         }
-        /*
+        
         [HttpPost("")]
-        public IActionResult CreateUser(string firstName, string lastName, string email)
+        public IActionResult CreateUser(Tweet tweet)
         {
-            //new User{FirstName = firstName, LastName = lastName, Email = email};
-            return Created(new Uri("/firstname = firstName"),new User{FirstName = firstName, LastName = lastName, Email = email});
+            TweetMem.Add(tweet);
+            return StatusCode(201);
         }
-        */    
+            
     }
     
 }

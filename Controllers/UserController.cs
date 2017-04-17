@@ -1,15 +1,13 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 
-
-
 namespace CoreUser
 {
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        
-        [HttpGet("")]
+        //TODO: add query parameters
+        [HttpGet("Users")]
         public IEnumerable<User> List(int id)
         {
             //UserMem mem = new UserMem();
@@ -19,22 +17,25 @@ namespace CoreUser
         [HttpGet("{id}")]
         public IActionResult Details(int id)
         {   
-            //UserMem mem = new UserMem();
-            return Ok(UserMem.UserById(id));
+            return Ok(UserMem.FindById(id));
         }
         
         [HttpPost("create")]
         public IActionResult Create([FromBody]User user)//int id, string firstname, string lastname, string email)
         {
-            //UserMem mem = new UserMem();
             UserMem.Add(user);
-            return Json(UserMem.All());
+            //return CreatedAtAction("Created", user);
+            return StatusCode(201);
         } 
 
         [HttpDelete("delete/{id}")]
         public IActionResult Delete(int id)
         {
-            return Ok(UserMem.DeleteById(id));
+            bool success = UserMem.DeleteById(id);
+            if (success != false){
+                return NotFound();
+            }
+            return StatusCode(202);
         }   
     }
 }

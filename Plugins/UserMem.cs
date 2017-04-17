@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace CoreUser
 {
-    static class UserMem
+    static class UserMem 
     {
         private static List<User> usersMem = new List<User>
         {
@@ -36,7 +36,7 @@ namespace CoreUser
             return true;
         }
 
-        public static User UserById(int id)
+        public static User FindById(int id)
         {
             int index = usersMem.FindIndex(x => x.ID == id);
             return usersMem[index];

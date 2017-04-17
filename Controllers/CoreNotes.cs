@@ -1,7 +1,5 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using CoreNotes;
  
 namespace CoreNotes
 {
