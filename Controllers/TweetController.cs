@@ -6,27 +6,42 @@ namespace Tweet
     [Route("api/[controller]")]
     public class TweetController : Controller
     {
-        [HttpGet("")]
+        // Get all Tweets
+        [HttpGet("all")]
         public IEnumerable<Tweet> List()
         {
-            TweetMem mem = new TweetMem();
-            return mem.All();
-        }
-    
-        [HttpGetAttribute("{id}")]
-        public IActionResult UserDetails(int id)
-        {
-            TweetMem mem = new TweetMem();
-            return Ok();//(mem.TweetById(id));
+            return TweetMem.All();
         }
         
-        [HttpPost("")]
-        public IActionResult CreateUser(Tweet tweet)
+        //Get Tweet by id
+        [HttpGet("{id}")]
+        public IActionResult Details(int id)
         {
-            TweetMem.Add(tweet);
-            return StatusCode(201);
-        }
             
+            return Ok(TweetMem.FindById(id));
+        }
+        
+        //Create Tweet
+        [HttpPost("create")]
+        public IActionResult Create([FromBody]Tweet tweet)
+        {
+            bool sucess = TweetMem.Add(tweet);
+            if(sucess != true){
+                return BadRequest();
+            }
+            return StatusCode(201, tweet);
+        }
+
+        // Delete Tweet by id
+        [HttpDelete("delete/{id}")]
+        public IActionResult Delete(int id)
+        {
+            bool success = TweetMem.DeleteById(id);
+            if(success == false){
+                return NotFound();
+            }
+            return StatusCode(202);
+        }    
     }
     
 }

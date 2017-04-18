@@ -6,33 +6,39 @@ namespace CoreUser
     [Route("api/[controller]")]
     public class UserController : Controller
     {
-        //TODO: add query parameters
-        [HttpGet("Users")]
-        public IEnumerable<User> List(int id)
+        // Get all Users
+        [HttpGet("all")]
+        public IEnumerable<User> ListAll()
         {
-            //UserMem mem = new UserMem();
             return UserMem.All();
         }
         
+        // Query user by id
         [HttpGet("{id}")]
         public IActionResult Details(int id)
         {   
+            
+            
             return Ok(UserMem.FindById(id));
         }
         
+        //Create User
         [HttpPost("create")]
-        public IActionResult Create([FromBody]User user)//int id, string firstname, string lastname, string email)
+        public IActionResult Create([FromBody]User user)
         {
-            UserMem.Add(user);
-            //return CreatedAtAction("Created", user);
-            return StatusCode(201);
+            bool success =  UserMem.Add(user);
+            if(success != true){
+                return BadRequest();
+            }
+            return StatusCode(201, user);
         } 
 
+        // Delete User by id
         [HttpDelete("delete/{id}")]
         public IActionResult Delete(int id)
         {
             bool success = UserMem.DeleteById(id);
-            if (success != false){
+            if (success == false){
                 return NotFound();
             }
             return StatusCode(202);

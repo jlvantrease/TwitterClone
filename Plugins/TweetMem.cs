@@ -2,7 +2,7 @@ using System.Collections.Generic;
 
 namespace Tweet
 {
-    class TweetMem
+    static class TweetMem
     {
         private static List<Tweet> tweets = new List<Tweet>
         {
@@ -12,7 +12,7 @@ namespace Tweet
             new Tweet{TweetID = 4, TweetOwner = 1, Message = "Tweet 4 owner = 3"}
         };
  
-        public List<Tweet> All(){
+        public static List<Tweet> All(){
             return tweets;
         }
         public static bool Add(Tweet t)
@@ -37,7 +37,7 @@ namespace Tweet
             return true;
         }
 
-        public static Tweet CreateById(int id)
+        public static Tweet FindById(int id)
         {
             int index = tweets.FindIndex(x => x.TweetID == id);
             return tweets[index];
