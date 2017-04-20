@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+//using System.Data.SqlClient;
 
 namespace Tweet
 {
@@ -10,6 +11,7 @@ namespace Tweet
         [HttpGet("all")]
         public IEnumerable<Tweet> List()
         {
+    
             return TweetMem.All();
         }
         
@@ -18,6 +20,7 @@ namespace Tweet
         public IActionResult Details(int id)
         {
             
+            
             return Ok(TweetMem.FindById(id));
         }
         
@@ -25,6 +28,11 @@ namespace Tweet
         [HttpPost("create")]
         public IActionResult Create([FromBody]Tweet tweet)
         {
+            //var connectionString = "server=twitterclone.database.windows.net;uid=jasonvantrease;pwd=cs4790!!";
+            //SqlConnection conn = new SqlConnection(connectionString);
+            //conn.Open();
+            //SqlCommand cmd = new SqlCommand("")
+
             bool sucess = TweetMem.Add(tweet);
             if(sucess != true){
                 return BadRequest();
