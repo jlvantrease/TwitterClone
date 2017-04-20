@@ -19,6 +19,9 @@
     "Microsoft.EntityFrameworkCore.SqlServer.Design": "1.0.0",
     "Microsoft.EntityFrameworkCore.SqlServer": "1.0.0"
   },
+  "tools": {
+    "Microsoft.EntityFrameworkCore.Tools.Dotnet":"1.1.0-preview4-final"
+  },
   "frameworks": {
     "netcoreapp1.0": {
       "dependencies": {

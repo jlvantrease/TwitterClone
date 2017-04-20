@@ -11,7 +11,7 @@ var printableOjbects = [];
     $.get("../api/tweet/all", function(data, status){
         for(message in data){
             console.log(data[message].message);
-            $("#test").append(data[message].message);
+            $("#test").append(data[message].message + "<br>");
         }
         
          //$("#test").append(JSON.stringify(data));
