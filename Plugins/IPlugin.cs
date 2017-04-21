@@ -2,10 +2,9 @@ using System.Collections.Generic;
 
 public interface IPlugin<T>
 {
-    bool Add();
+    bool Add(T u);
     bool DeleteById(int id);
     List<T> All();
-
-    T CreateById(int id);
+    T UpdateById(int id);
 
 }

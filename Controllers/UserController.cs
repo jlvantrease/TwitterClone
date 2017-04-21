@@ -10,15 +10,15 @@ namespace CoreUser
         [HttpGet("all")]
         public IEnumerable<User> ListAll()
         {
-            return UserMem.All();
+            UserSql userSql = new UserSql();
+            return userSql.All();
+            //return UserMem.All();
         }
         
         // Query user by id
         [HttpGet("{id}")]
         public IActionResult Details(int id)
-        {   
-            
-            
+        {            
             return Ok(UserMem.FindById(id));
         }
         
@@ -26,10 +26,13 @@ namespace CoreUser
         [HttpPost("create")]
         public IActionResult Create([FromBody]User user)
         {
-            bool success =  UserMem.Add(user);
+            UserSql userSql = new UserSql();
+            
+            bool success =  userSql.Add(user);
             if(success != true){
                 return BadRequest();
             }
+            
             return StatusCode(201, user);
         } 
 
@@ -42,6 +45,12 @@ namespace CoreUser
                 return NotFound();
             }
             return StatusCode(202);
-        }   
+        }
+
+        [HttpPut("update/{id}")]
+        public IActionResult Upate(int id, [FromBody]User user )
+        {
+            return Ok();
+        }  
     }
 }

@@ -18,6 +18,8 @@ namespace ApiApplication
         public void ConfigureServices(IServiceCollection services)
         {
          services.AddMvc();
+         //services.AddEntityFrameworkSqlServer();
+        
         }
 
         public void Configure(IApplicationBuilder app, ILoggerFactory loggerFactory)
