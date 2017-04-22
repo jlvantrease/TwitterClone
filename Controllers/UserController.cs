@@ -12,14 +12,21 @@ namespace CoreUser
         {
             UserSql userSql = new UserSql();
             return userSql.All();
-            //return UserMem.All();
         }
         
         // Query user by id
         [HttpGet("{id}")]
         public IActionResult Details(int id)
-        {            
-            return Ok(UserMem.FindById(id));
+        {   
+            UserSql userSql = new UserSql();
+            
+            User user = userSql.FindById(id);
+
+            if(user == null){
+                return StatusCode(404,"User not found");
+            }
+            
+            return Ok(user);
         }
         
         //Create User
@@ -40,17 +47,26 @@ namespace CoreUser
         [HttpDelete("delete/{id}")]
         public IActionResult Delete(int id)
         {
-            bool success = UserMem.DeleteById(id);
+            UserSql userSql = new UserSql();
+            bool success = userSql.DeleteById(id);
+            
             if (success == false){
-                return NotFound();
+                return StatusCode(404,"User not found");
             }
-            return StatusCode(202);
+            
+            return Ok("User deleted");
         }
 
+        //Update User by id 
         [HttpPut("update/{id}")]
-        public IActionResult Upate(int id, [FromBody]User user )
+        public IActionResult Update(int id, [FromBody]User user )
         {
-            return Ok();
+            UserSql userSql = new UserSql();
+            var u = userSql.UpdateById(id, user);
+            if(u == null){
+                return StatusCode(404);
+            }
+            return Ok("User (id = "  + id +") updated");
         }  
     }
 }

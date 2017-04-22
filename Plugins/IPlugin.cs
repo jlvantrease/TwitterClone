@@ -5,6 +5,8 @@ public interface IPlugin<T>
     bool Add(T u);
     bool DeleteById(int id);
     List<T> All();
-    T UpdateById(int id);
-
+    
+    T UpdateById(int id, T obj);
+    
+     T FindById(int id);
 }
