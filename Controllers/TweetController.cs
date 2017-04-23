@@ -18,7 +18,13 @@ namespace Tweet
         [HttpGet("{id}")]
         public IActionResult Details(int id)
         {   
-            return Ok(TweetMem.FindById(id));
+            TweetSql tweetSql = new TweetSql();
+            Tweet tweet = tweetSql.FindById(id);
+
+            if(tweet == null){
+                return StatusCode(404,"Tweet not found");
+            }
+            return Ok(tweet);
         }
         
         //Create Tweet
@@ -37,7 +43,9 @@ namespace Tweet
         [HttpDelete("delete/{id}")]
         public IActionResult Delete(int id)
         {
-            bool success = TweetMem.DeleteById(id);
+            TweetSql tweetSql = new TweetSql();
+            bool success = (tweetSql.DeleteById(id));
+            
             if(success == false){
                 return NotFound();
             }

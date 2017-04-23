@@ -180,7 +180,6 @@
 "/home/jason/asp.net/TwitterClone/App/Entities/Tweet.cs"
 "/home/jason/asp.net/TwitterClone/App/Entities/User.cs"
 "/home/jason/asp.net/TwitterClone/Plugins/IPlugin.cs"
-"/home/jason/asp.net/TwitterClone/Plugins/tempsql.cs"
 "/home/jason/asp.net/TwitterClone/Plugins/Memory/TweetMem.cs"
 "/home/jason/asp.net/TwitterClone/Plugins/Memory/UserMem.cs"
 "/home/jason/asp.net/TwitterClone/Plugins/SQL/UserSql.cs"

@@ -9,14 +9,17 @@
 var printableOjbects = [];
 
     $.get("../api/tweet/all", function(data, status){
-        //var reverseObj = $.makeArray(data);
-        //reverseObj.reverse
-        for(message in data){
-            console.log(data[message].message);
-            $("#tweets").append(data[message].message + "<br><hr>");
-        }
         
-         //$("#test").append(JSON.stringify(data));
+        var tweetArray = []
+
+        for(x in data){
+            tweetArray.push(data[x]);
+        }
+        tweetArray.reverse();
+        for ( x in tweetArray){
+        $("#tweets").append("User: " + tweetArray[x].tweetOwner+"<br>");
+        $("#tweets").append(tweetArray[x].message + "<br><hr>");
+        }
     });
 
     
